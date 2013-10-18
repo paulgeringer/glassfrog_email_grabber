@@ -12,7 +12,7 @@ class XMLParser
   end
 
   def xpath_navigator xml, path
-    emails = xml.xpath(path)
+    emails = xml_parser(xml).xpath(path)
   end
 
   def email_map array
