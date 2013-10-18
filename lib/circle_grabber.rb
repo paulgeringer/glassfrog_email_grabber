@@ -25,7 +25,7 @@ class CircleGrabber
 
   def circle_emails( circle, hash = circle_id_hash )
     circle_id = hash[circle]
-    xml = parser.uri_parse( parser.url_generator "circle/#{circle_id}/mailing_list" )
+    xml = parser.uri_parse( "circle/#{circle_id}/mailing_list" )
     email_array = emailer.xpath_navigator( xml, 'people/person/email' )
     emailer.email_map( email_array )
   end

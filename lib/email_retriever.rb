@@ -7,15 +7,15 @@ class XMLParser
     @driver = driver
   end
 
-  def xml_parser unparsed_xml
-    driver.parse(unparsed_xml)
+  def xml_parser( unparsed_xml )
+    driver.parse( unparsed_xml )
   end
 
-  def xpath_navigator xml, path
-    emails = xml_parser(xml).xpath(path)
+  def xpath_navigator( xml, path )
+    emails = xml_parser( xml ).xpath( path )
   end
 
-  def email_map array
+  def email_map( array )
     array.map { |email| "#{email.text}" }
   end
 

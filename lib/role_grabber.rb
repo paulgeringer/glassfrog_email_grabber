@@ -1,6 +1,6 @@
-require './uri_parser'
-require './email_retriever'
-require './circle_grabber'
+require_relative 'uri_parser'
+require_relative 'email_retriever'
+require_relative 'circle_grabber'
 
 class RoleGrabber
   attr_reader :circle_hash, :parser, :emailer
@@ -25,15 +25,13 @@ class RoleGrabber
 
   def role_member_hash( circle, role, hash = circle_hash )
     circle_id = circle_hash[circle]
-    xml = parser.uri_parse( parser.url_generator "circle/#{circle_id}/roles" )
+    xml = parser.uri_parse( "circle/#{circle_id}/roles" )
     email_array = emailer.xpath_navigator( xml, 'circle/role' )
     role_array = email_array.map do |role|
       { role: role.xpath('./name').text,
         people: role.xpath('./filled-by').children.xpath('./id').map {|id| id.text } }
     end
-    puts role_array, role
     role_array.detect { |hash| hash[:role].eql?(role) } 
   end
-
 
 end
