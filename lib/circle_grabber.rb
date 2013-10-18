@@ -15,9 +15,11 @@ class CircleGrabber
   end
 
   def circle_id_hash
-    circle_array.map do |circle|
+    circle_hashes = circle_array.map do |circle|
       { id: circle.xpath('id').text, name: circle.xpath('name').text }
     end
+    names_to_ids = {}
+    circle_hashes.each { |circle| names_to_ids[circle[:name]] = circle[:id]}
   end
 
 end
