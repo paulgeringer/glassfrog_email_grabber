@@ -14,7 +14,11 @@ class RoleGrabber
   def role_emails( circle, role, hash = circle_hash )
     circle_id = circle_hash[circle]
     xml = parser.uri_parse( parser.url_generator "circle/#{circle_id}/roles" )
-    email_array = emailer.xpath_navigator( emailer.xml_parser( xml ), 'circle/role/name' )
+    email_array = emailer.xpath_navigator( emailer.xml_parser( xml ), 'circle/role' )
+    role_array = email_array.map do |role|
+      role.xpath('./filled-by').children.xpath('./name')
+    end
+    role_array 
     #role_array = [] 
     #email_array.each do |role|
       #role_array << role.xpath('filled-by')
