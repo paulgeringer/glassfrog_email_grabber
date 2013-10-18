@@ -29,7 +29,7 @@ else
 	circles_xml = get("circle")
 	circles = Nokogiri::XML.parse(circles_xml).xpath("circles/circle")
 	circle_hashes = circles.map do |circle|
-		{id: circle.xpath('id').text, name: circle.xpath('short-name').text}
+		{id: circle.xpath('id').text, name: circle.xpath('name').text}
 	end
 	names_to_ids = {}
 	circle_hashes.each { |circle| names_to_ids[circle[:name]] = circle[:id]}

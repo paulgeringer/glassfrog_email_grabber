@@ -1,4 +1,6 @@
-class EmailRetriever
+require 'nokogiri'
+
+class XMLParser
   attr_reader :driver
 
   def initialize( driver = Nokogiri::XML )
@@ -6,12 +8,12 @@ class EmailRetriever
   end
 
   def xml_parser unparsed_xml
-    driver.parse(xml)
+    driver.parse(unparsed_xml)
   end
 
-  def email_mapper xml, path
+  def xpath_navigator xml, path
     emails = xml.xpath(path)
-    emails.map {|email| "#{email.text}" }
   end
 
+  #emails.map {|email| "#{email.text}" }
 end
