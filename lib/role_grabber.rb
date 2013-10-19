@@ -1,5 +1,5 @@
 require_relative 'uri_parser'
-require_relative 'email_retriever'
+require_relative 'xml_parser'
 require_relative 'circle_grabber'
 
 class RoleGrabber

@@ -1,5 +1,5 @@
-require './uri_parser'
-require './email_retriever'
+require_relative 'uri_parser'
+require_relative 'xml_parser'
 
 class CircleGrabber
   attr_reader :parser, :emailer
@@ -11,7 +11,7 @@ class CircleGrabber
 
   def circle_array
     xml = parser.get_xml( 'circle' )
-    emailer.xpath_navigator( xml , 'circles/circle' )
+    emailer.xpath_navigator( xml, 'circles/circle' )
   end
 
   def circle_id_hash
@@ -26,8 +26,7 @@ class CircleGrabber
   def circle_emails( circle, hash = circle_id_hash )
     circle_id = hash[circle]
     xml = parser.uri_parse( "circle/#{circle_id}/mailing_list" )
-    email_array = emailer.xpath_navigator( xml, 'people/person/email' )
-    emailer.email_map( email_array )
+    emailer.email_map( xml, 'people/person/email' )
   end
 
 end

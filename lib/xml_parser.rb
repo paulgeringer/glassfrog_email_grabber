@@ -15,8 +15,9 @@ class XMLParser
     emails = xml_parser( xml ).xpath( path )
   end
 
-  def email_map( array )
-    array.map { |email| "#{email.text}" }
+  def email_map( xml, path )
+    email_array = xpath_navigator( xml, path ) 
+    email_array.map { |email| "#{email.text}" }
   end
 
 end

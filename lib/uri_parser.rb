@@ -2,6 +2,9 @@ require "open-uri"
 
 class URIParser
 
+  GLASSFROG_URI = ENV['GLASSFROG_URI']
+  GLASSFROG_KEY = ENV['GLASSFROG_KEY']
+
   attr_reader :parser
 
   def initialize( parser = URI )
